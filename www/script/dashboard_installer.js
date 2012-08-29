@@ -4,6 +4,13 @@ var dashboard_installer = dashboard_installer || {};
 dashboard_installer.install = function(){
     dashboard_installer.on_jquery(function(err){
         dashboard_installer.ready();
+        $.showDialog("dialog/_loading_dashboard.html", {
+          submit: function(data, callback) {
+
+          }
+        });
+
+
     });
 }
 
@@ -11,10 +18,12 @@ dashboard_installer.install = function(){
 dashboard_installer.ready = function(){
     $.couch.replicate( "http://garden20.iriscouch.com/dashboard_seed", "dashboard", {
         success: function(data) {
-            console.log(data);
+            $("#dialog, #overlay, #overlay-frame").remove();
+            window.location.reload();
         },
         error: function(status) {
-            console.log(status);
+            alert('There was a problem installing.');
+            $("#dialog, #overlay, #overlay-frame").remove();
         }
     }, {
         create_target: true
