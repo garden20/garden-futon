@@ -14,6 +14,9 @@ dashboard_installer.install = function(){
     });
 }
 
+dashboard_installer.redirect = function() {
+    window.location = "/dashboard/_design/dashboard/_rewrite/";
+}
 
 dashboard_installer.ready = function(){
     $.couch.replicate( "http://garden20.iriscouch.com/garden20", "dashboard", {
