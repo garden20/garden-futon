@@ -16,7 +16,7 @@ dashboard_installer.install = function(){
 
 
 dashboard_installer.ready = function(){
-    $.couch.replicate( "http://garden20.iriscouch.com/dashboard_seed", "dashboard", {
+    $.couch.replicate( "http://garden20.iriscouch.com/garden20", "dashboard", {
         success: function(data) {
             dashboard_installer.setup_config(function(err){
                 if (err) alert('there was an error');
@@ -30,7 +30,8 @@ dashboard_installer.ready = function(){
             $("#dialog, #overlay, #overlay-frame").remove();
         }
     }, {
-        create_target: true
+        create_target: true,
+        doc_ids : [ '_design/dashboard'  ]
     });
 }
 
