@@ -480,7 +480,7 @@ function $$(node) {
 
   }
 
-  $.couch.urlPrefix = "..";
+  $.couch.urlPrefix = "/_couch";
   $.futon = $.futon || {};
   $.extend($.futon, {
     navigation: new Navigation(),
