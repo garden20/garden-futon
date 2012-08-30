@@ -26,8 +26,10 @@ dashboard_installer.ready = function(){
         success: function(data) {
             dashboard_installer.setup_config(function(err){
                 if (err) alert('there was an error');
-                $("#dialog, #overlay, #overlay-frame").remove();
-                window.location.reload();
+                dashboard_installer.setup_vhosts(function(){
+                    $("#dialog, #overlay, #overlay-frame").remove();
+                    window.location.reload();
+                })
             });
 
         },
@@ -51,6 +53,25 @@ dashboard_installer.setup_config = function(cb){
         }
     });
 }
+
+dashboard_installer.setup_vhosts = function(cb) {
+    dashboard_installer.add_vhost_config('127.0.0.1:5984/dashboard', '/dashboard', function(){
+        dashboard_installer.add_vhost_config('127.0.0.1:5984', '/dashboard/_design/dashboard/_rewrite/', function(){
+           cb();
+        });
+    })
+}
+
+dashboard_installer.add_vhost_config = function(host, to, cb) {
+    $.couch.config({
+        success : function(result) {
+            cb();
+        }
+    }, 'vhosts', host, to );
+}
+
+
+
 
 dashboard_installer.on_jquery = function(cb) {
     if (dashboard_installer.check_jquery()) {
