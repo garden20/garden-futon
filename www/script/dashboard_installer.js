@@ -77,7 +77,7 @@ dashboard_installer.config = {
        "short_urls": true,
        "hostnames": "http://127.0.0.1:5984/",
        "short_app_urls": true,
-       "rootDashboard": false,
+       "rootDashboard": true,
        "hosted": false,
        "login_type_undefined": true
    },
