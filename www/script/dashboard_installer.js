@@ -15,7 +15,7 @@ dashboard_installer.install = function(){
 }
 
 dashboard_installer.redirect = function() {
-    window.location = "/dashboard/_design/dashboard/_rewrite/";
+    window.location = "/";
 }
 
 dashboard_installer.ready = function(){
