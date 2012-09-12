@@ -22,7 +22,7 @@ dashboard_installer.ready = function(){
     // since no dashboard, there is no _couch endpoint which this modified futon needs. reset
     $.couch.urlPrefix = "..";
 
-    $.couch.replicate( "http://garden20.iriscouch.com/garden20", "dashboard", {
+    $.couch.replicate( "http://garden20.iriscouch.com/dashboard_seed", "dashboard", {
         success: function(data) {
             dashboard_installer.setup_config(function(err){
                 if (err) alert('there was an error');
